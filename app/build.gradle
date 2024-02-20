@@ -6,7 +6,9 @@ plugins {
 android {
     namespace 'com.route.news_application'
     compileSdk 33
-
+        viewBinding{
+            enabled = true
+        }
     defaultConfig {
         applicationId "com.route.news_application"
         minSdk 24
