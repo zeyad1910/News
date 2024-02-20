@@ -15,12 +15,7 @@ object ApiManager {
 
     fun service() : WebService? {
         if(retrofit ==null){
-            val loggingInterceptor = HttpLoggingInterceptor(object :HttpLoggingInterceptor.Logger{
-                override fun log(message: String) {
-                    Log.e("ApiManager","Body:$message")
-                }
-            })
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            Interceptors.loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
             val okHttpClint = OkHttpClient.Builder()
 //                .addInterceptor(loggingInterceptor)
                 .addInterceptor(Interceptors.offLineInterceptor)

@@ -1,10 +1,17 @@
 package com.route.news_application.interceptors
 
 
+import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 
 object Interceptors {
+    val loggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger{
+        override fun log(message: String) {
+            Log.e("ApiManager","Body:$message")
+        }
+    })
 
     val onLineInterceptor = Interceptor { chain ->
         val response = chain.proceed(chain.request())
