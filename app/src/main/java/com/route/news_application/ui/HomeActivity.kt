@@ -1,7 +1,8 @@
-package com.route.news_application
+package com.route.news_application.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.route.news_application.R
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
