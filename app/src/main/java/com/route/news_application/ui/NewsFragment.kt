@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.google.gson.Gson
 import com.route.news_application.R
 import com.route.news_application.api.ApiManager
@@ -29,13 +30,20 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadSources()
+        initListener()
+    }
 
+    private fun loadSources() {
+        checkProgressViewVisibility(true)
+        checkErrorViewVisibility(false,"")
         ApiManager.service()?.getSources(ApiManager.apiKey)?.
         enqueue(object : Callback<SourcesResponse> {
             override fun onResponse(
                 call: Call<SourcesResponse>,
                 response: Response<SourcesResponse>,
             ) {
+                checkProgressViewVisibility(false)
                 if(response.isSuccessful){
                     response.body()?.sources.let {
                         showTabs(it!!)
@@ -43,19 +51,18 @@ class NewsFragment : Fragment() {
                 }else{
                     val errorByJson=Gson()
                         .fromJson(response.errorBody()?.string(),SourcesResponse::class.java)
-                    showError(errorByJson)
+                    checkErrorViewVisibility(true,errorByJson.message ?:
+                    "some thing wrong please try again ")
                 }
             }
 
             override fun onFailure(call: Call<SourcesResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                checkProgressViewVisibility(false)
+                checkErrorViewVisibility(true,t.message ?:
+                "some thing wrong please try again ")
             }
 
         })
-    }
-
-    private fun showError(message:SourcesResponse) {
-        Toast.makeText(requireActivity(), "$message",Toast.LENGTH_SHORT).show()
     }
 
     private fun showTabs(sources:List<Source?>) {
@@ -66,5 +73,16 @@ class NewsFragment : Fragment() {
         }
     }
 
-
+    private fun checkErrorViewVisibility(isVisible:Boolean,message:String){
+        binding.errorContent.root.isVisible = isVisible
+        binding.errorContent.errorTxt.text = message
+    }
+    private fun checkProgressViewVisibility(isVisible:Boolean){
+        binding.errorProgress.isVisible = isVisible
+    }
+    private fun initListener(){
+        binding.errorContent.retryBtn.setOnClickListener {
+            loadSources()
+        }
+    }
 }
