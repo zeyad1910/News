@@ -1,6 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.News_Application" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary" >@color/green</item>
+        <item name="colorSecondary" >@color/white</item>
+    </style>
+
+    <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="SearchIconStyle" parent="Widget.AppCompat.SearchView.ActionBar">
+        <item name="android:background">@android:color/white</item>
     </style>
 <!--
     <style name="Theme.News_Application" parent="Base.Theme.News_Application" />

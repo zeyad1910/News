@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.gson.Gson
 import com.route.news_application.R
 import com.route.news_application.api.ApiManager
@@ -42,7 +43,7 @@ class NewsFragment : Fragment() {
                 }else{
                     val errorByJson=Gson()
                         .fromJson(response.errorBody()?.string(),SourcesResponse::class.java)
-                    showError()
+                    showError(errorByJson)
                 }
             }
 
@@ -53,8 +54,8 @@ class NewsFragment : Fragment() {
         })
     }
 
-    private fun showError() {
-        TODO("Not yet implemented")
+    private fun showError(message:SourcesResponse) {
+        Toast.makeText(requireActivity(), "$message",Toast.LENGTH_SHORT).show()
     }
 
     private fun showTabs(sources:List<Source?>) {
