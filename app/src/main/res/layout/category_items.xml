@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_of_categories"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="148dp"
+    android:layout_height="171dp"
+    tools:background="@drawable/category_item_background"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/sports"
+        android:contentDescription="@string/todo"
+        android:layout_gravity="center_horizontal"/>
+    <TextView
+        android:id="@+id/title_of_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="sports"
+        android:layout_gravity="center_horizontal"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        android:textColor="@color/white"/>
+</LinearLayout>

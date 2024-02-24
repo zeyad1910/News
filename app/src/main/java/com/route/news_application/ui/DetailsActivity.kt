@@ -14,10 +14,10 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        putDataOnViews()
+        putArticlesDataOnViews()
     }
 
-    private fun putDataOnViews() {
+    private fun putArticlesDataOnViews() {
         val intent = intent
         Glide.with(binding.root)
             .load(intent.getStringExtra(Constants.IMAGE_KEY))
