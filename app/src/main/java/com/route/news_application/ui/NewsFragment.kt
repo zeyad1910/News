@@ -6,13 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.gson.Gson
-import com.route.news_application.R
+import com.route.news_application.Constants
 import com.route.news_application.adapter.NewsAdapter
 import com.route.news_application.api.ApiManager
 import com.route.news_application.api.models.Articles
@@ -154,9 +153,14 @@ class NewsFragment : Fragment() {
         adapter.onItemViewClickListener = object : NewsAdapter.SetOnItemViewClickListener{
             override fun itemViewClickListener(data: Articles?, position: Int) {
                 val intent = Intent(requireActivity(),DetailsActivity::class.java)
+                intent.putExtra(Constants.IMAGE_KEY,data?.urlToImage)
+                intent.putExtra(Constants.AUTHOR_KEY,data?.author)
+                intent.putExtra(Constants.TITLE_KEY,data?.title)
+                intent.putExtra(Constants.PUBLISHAT_KEY,data?.publishedAt)
+                intent.putExtra(Constants.DESCRIPTION_KEY,data?.description)
+                intent.putExtra(Constants.URL_KEY,data?.url)
                 startActivity(intent)
             }
-
         }
     }
 }

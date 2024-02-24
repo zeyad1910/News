@@ -3,5 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#39a552</color>
-
+    <color name="red">#c91c22</color>
+    <color name="blue">#003e90</color>
+    <color name="pink">#ed1e79</color>
+    <color name="bony">#cf7e48</color>
+    <color name="light_blue">#4882cf</color>
+    <color name="yellow">#f2d352</color>
 </resources>
