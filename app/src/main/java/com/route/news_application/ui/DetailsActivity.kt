@@ -9,12 +9,11 @@ import com.route.news_application.Constants
 import com.route.news_application.databinding.ActivityDetailsBinding
 
 class DetailsActivity : AppCompatActivity() {
-    lateinit var binding : ActivityDetailsBinding
+    private lateinit var binding : ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         putDataOnViews()
     }
 
@@ -23,7 +22,6 @@ class DetailsActivity : AppCompatActivity() {
         Glide.with(binding.root)
             .load(intent.getStringExtra(Constants.IMAGE_KEY))
             .into(binding.imageDetails)
-
         binding.newsTxt.text = intent.getStringExtra(Constants.AUTHOR_KEY)
         binding.newsTitleTxt.text = intent.getStringExtra(Constants.TITLE_KEY)
         binding.newsDescriptionTxt.text = intent.getStringExtra(Constants.DESCRIPTION_KEY)
