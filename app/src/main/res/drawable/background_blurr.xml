@@ -4,7 +4,7 @@
     <item>
         <bitmap
             android:src="@drawable/news_background"
-            android:alpha="0.7"
+            android:alpha="0.09"
             />
     </item>
 </layer-list>

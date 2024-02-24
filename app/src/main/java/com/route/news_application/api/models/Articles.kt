@@ -1,7 +1,7 @@
 package com.route.news_application.api.models
 
 data class Articles(
-    val source : List<SourceInArticles?>?=null,
+    val source : SourceInArticles?=null,
     val author : String?=null,
     val title : String?=null,
     val description : String?=null,

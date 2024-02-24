@@ -6,4 +6,6 @@
     <string name="news_app">News App</string>
     <string name="search">Search</string>
     <string name="retry">Retry</string>
+    <string name="news_details">News Details</string>
+    <string name="view_full_article">View Full Article</string>
 </resources>

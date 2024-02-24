@@ -24,17 +24,6 @@
             android:textColor="@color/white"
             />
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="@id/app_bar"
-        app:layout_constraintBottom_toBottomOf="@id/app_bar"
-        app:layout_constraintTop_toTopOf="@id/app_bar"
-        android:layout_marginBottom="10dp"
-        android:padding="5dp"/>
 
     <FrameLayout
     android:id="@+id/fragment_conrainer"
