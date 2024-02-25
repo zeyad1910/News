@@ -6,22 +6,24 @@
     android:orientation="vertical"
     android:layout_width="148dp"
     android:layout_height="171dp"
-    tools:background="@drawable/category_item_background"
+    android:padding="5dp"
+    tools:background="@drawable/category_item_background_red"
     android:layout_margin="10dp">
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="132dp"
+        android:layout_height="116dp"
         tools:src="@drawable/sports"
         android:contentDescription="@string/todo"
         android:layout_gravity="center_horizontal"/>
     <TextView
         android:id="@+id/title_of_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
         tools:text="sports"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:textSize="22sp"
         android:textStyle="normal"
         android:textColor="@color/white"/>

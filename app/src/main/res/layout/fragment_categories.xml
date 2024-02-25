@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_blurr"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".CategoriesFragment">
+    tools:context=".ui.CategoriesFragment">
 
 
 <TextView
@@ -32,6 +32,5 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/category_items"
         android:padding="7dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

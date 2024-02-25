@@ -15,6 +15,7 @@ import com.route.news_application.Constants
 import com.route.news_application.adapter.NewsAdapter
 import com.route.news_application.api.ApiManager
 import com.route.news_application.api.models.Articles
+import com.route.news_application.api.models.Categories
 import com.route.news_application.api.models.EverythingResponse
 import com.route.news_application.api.models.Source
 import com.route.news_application.api.models.SourcesResponse
@@ -23,7 +24,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NewsFragment : Fragment() {
+class NewsFragment(val category:String) : Fragment() {
     lateinit var binding : FragmentNewsBinding
     val adapter = NewsAdapter(listOf())
     override fun onCreateView(
@@ -45,7 +46,7 @@ class NewsFragment : Fragment() {
     private fun loadSources() {
         checkProgressViewVisibility(true)
         checkErrorViewVisibility(false,"")
-        ApiManager.service()?.getSources(ApiManager.apiKey)?.
+        ApiManager.service()?.getSources(category,ApiManager.apiKey)?.
         enqueue(object : Callback<SourcesResponse> {
             override fun onResponse(
                 call: Call<SourcesResponse>,
