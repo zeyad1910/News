@@ -15,4 +15,8 @@ interface WebService {
     @GET("/v2/everything")
     fun getEverything(@Query("sources") article : String,
                       @Query("apiKey") apiKey : String) : Call<EverythingResponse>
+    @GET("/v2/everything")
+    fun getEverythingForSearch(@Query("q") searchText:String?,
+                               @Query("sources") article : String,
+                               @Query("apiKey") apiKey : String) : Call<EverythingResponse>
 }

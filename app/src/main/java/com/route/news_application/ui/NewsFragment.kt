@@ -1,12 +1,15 @@
 package com.route.news_application.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -15,7 +18,6 @@ import com.route.news_application.Constants
 import com.route.news_application.adapter.NewsAdapter
 import com.route.news_application.api.ApiManager
 import com.route.news_application.api.models.Articles
-import com.route.news_application.api.models.Categories
 import com.route.news_application.api.models.EverythingResponse
 import com.route.news_application.api.models.Source
 import com.route.news_application.api.models.SourcesResponse
@@ -23,7 +25,7 @@ import com.route.news_application.databinding.FragmentNewsBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import androidx.appcompat.widget.SearchView
 class NewsFragment(val category:String) : Fragment() {
     lateinit var binding : FragmentNewsBinding
     val adapter = NewsAdapter(listOf())
@@ -101,6 +103,7 @@ class NewsFragment(val category:String) : Fragment() {
                 val source = tab?.tag as Source
                 source.id?.let {
                     loadArticles(it)
+                    listenerForSearch(it)
                 }
             }
 
@@ -110,6 +113,7 @@ class NewsFragment(val category:String) : Fragment() {
                 val source = tab?.tag as Source
                 source.id?.let {
                     loadArticles(it)
+                    listenerForSearch(it)
                 }
             }
 
@@ -163,5 +167,56 @@ class NewsFragment(val category:String) : Fragment() {
                 startActivity(intent)
             }
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun searchViewWithCall(sourceId : String,query:String?){
+        checkProgressViewVisibility(false)
+        checkErrorViewVisibility(false, "")
+        ApiManager.service()?.getEverythingForSearch(query,sourceId,ApiManager.apiKey)
+            ?.enqueue(object:Callback<EverythingResponse>{
+                override fun onResponse(
+                    call: Call<EverythingResponse>,
+                    response: Response<EverythingResponse>,
+                ) {
+                    if(response.isSuccessful) {
+                        response.body()?.articles.let {
+                            adapter.updateList(it!!)
+                        }
+                    }
+                    else{
+                        val error =
+                            Gson().fromJson(
+                                response.errorBody()?.string(),
+                                EverythingResponse::class.java
+                            )
+                        checkErrorViewVisibility(true, error.status ?: " some thing wrong")
+                    }
+                }
+
+                override fun onFailure(call: Call<EverythingResponse>, t: Throwable) {
+                    checkProgressViewVisibility(false)
+                    checkErrorViewVisibility(true,t.message ?:
+                    "some thing wrong please try again ")
+                }
+
+            })
+    }
+
+    private fun listenerForSearch(sourceId: String){
+                binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+            @RequiresApi(Build.VERSION_CODES.O)
+            override fun onQueryTextSubmit(query: String?): Boolean {
+//                searchViewWithCall(sourceId,query)
+                return true
+            }
+
+            @RequiresApi(Build.VERSION_CODES.O)
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchViewWithCall(sourceId,newText)
+                return true
+            }
+
+        })
     }
 }
