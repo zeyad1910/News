@@ -26,7 +26,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import androidx.appcompat.widget.SearchView
-class NewsFragment(val category:String) : Fragment() {
+class NewsFragment(private val category:String) : Fragment() {
     lateinit var binding : FragmentNewsBinding
     val adapter = NewsAdapter(listOf())
     override fun onCreateView(
