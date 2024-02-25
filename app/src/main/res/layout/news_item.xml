@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:contentDescription="@string/todo"
         tools:src="@drawable/background"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize20Percent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
         android:scaleType="fitXY"/>
 
     <TextView
