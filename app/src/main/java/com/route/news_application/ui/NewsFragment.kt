@@ -43,6 +43,7 @@ class NewsFragment(private val category:String) : Fragment() {
         prepareRV()
         initListener()
         sendDataToDetailsActivity()
+        val branchesText = "dev"
     }
 
     private fun loadSources() {
