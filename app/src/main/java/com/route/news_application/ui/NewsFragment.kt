@@ -75,7 +75,6 @@ class NewsFragment(val category:String) : Fragment() {
 
         })
     }
-
     private fun showTabs(sources:List<Source?>) {
         sources.forEach {
             val singleTab = binding.tabLayout.newTab()
@@ -85,7 +84,6 @@ class NewsFragment(val category:String) : Fragment() {
         }
 
     }
-
     private fun checkErrorViewVisibility(isVisible:Boolean,message:String){
         binding.errorContent.root.isVisible = isVisible
         binding.errorContent.errorTxt.text = message
@@ -119,7 +117,6 @@ class NewsFragment(val category:String) : Fragment() {
 
         })
     }
-
     private fun loadArticles(sourceId : String){
         checkProgressViewVisibility(false)
         checkErrorViewVisibility(false, "")
@@ -148,12 +145,10 @@ class NewsFragment(val category:String) : Fragment() {
 
            } )
     }
-
     private fun prepareRV(){
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         binding.recyclerView.adapter=adapter
     }
-
     private fun sendDataToDetailsActivity(){
         adapter.onItemViewClickListener = object : NewsAdapter.SetOnItemViewClickListener{
             override fun itemViewClickListener(data: Articles?, position: Int) {
@@ -168,7 +163,6 @@ class NewsFragment(val category:String) : Fragment() {
             }
         }
     }
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun searchViewWithCall(sourceId : String,query:String?){
         checkProgressViewVisibility(false)
@@ -202,7 +196,6 @@ class NewsFragment(val category:String) : Fragment() {
 
             })
     }
-
     private fun listenerForSearch(sourceId: String){
                 binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             @RequiresApi(Build.VERSION_CODES.O)

@@ -3,4 +3,7 @@
     <solid android:color="@color/green" />
     <corners android:bottomLeftRadius="50dp"
         android:bottomRightRadius="50dp"
-        /> </shape>
+        />
+<size android:height="50dp"
+    android:width="50dp"/>
+</shape>

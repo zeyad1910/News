@@ -9,7 +9,7 @@ object Constants {
     const val PUBLISHAT_KEY="PUBLISHATKEY"
     const val DESCRIPTION_KEY = "DESCRIPTIONKEY"
     const val URL_KEY = "URLKEY"
-
+    val appName = "News App"
     val categoriesList : List<Categories> = listOf(
         Categories(R.drawable.sports,R.drawable.category_item_background_red,"sports"),
         Categories(R.drawable.politics,R.drawable.category_item_background_blue,"entertainment"),
