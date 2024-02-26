@@ -52,6 +52,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.sett_icon ->{
                     replaceFragment(settingsFragment)
+                    binding.titleTxt.text = Constants.SETTINGS
                     binding.drawerLayout.close()
                 }
             }
