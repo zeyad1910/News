@@ -12,9 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="5dp"
+        android:padding="3dp"
         style="@style/TabLayoutStyle"
-        app:tabMode="scrollable"/>
+        app:tabMode="scrollable"
+        app:tabBackground="@drawable/tab_background"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/green"
+        android:layout_marginTop="10dp"
+        />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"

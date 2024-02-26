@@ -1,11 +1,13 @@
 package com.route.news_application.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
@@ -26,6 +28,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import androidx.appcompat.widget.SearchView
+import com.google.android.material.internal.ViewUtils.dpToPx
+
 class NewsFragment(private val category:String) : Fragment() {
     lateinit var binding : FragmentNewsBinding
     val adapter = NewsAdapter(listOf())
@@ -43,6 +47,7 @@ class NewsFragment(private val category:String) : Fragment() {
         prepareRV()
         initListener()
         sendDataToDetailsActivity()
+        val test = "test"
     }
 
     private fun loadSources() {

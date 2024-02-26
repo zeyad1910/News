@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_blurr"
+    tools:openDrawer="start"
     tools:context=".ui.HomeActivity">
 
 
@@ -62,7 +63,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:itemIconPadding="5dp"
-        app:itemIconSize="25dp"
+        app:itemIconSize="32dp"
         app:itemTextColor="@color/black"
         app:menu="@menu/menu_nav_side_menu"
         app:headerLayout="@layout/nav_side_menu"/>
