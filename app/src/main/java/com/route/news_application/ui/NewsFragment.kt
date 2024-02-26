@@ -3,6 +3,7 @@ package com.route.news_application.ui
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,13 +55,13 @@ class NewsFragment(private val category:String) : Fragment() {
         newsViewModel.loadSources(category)
         newsViewModel.sourcesListLiveData.observe(viewLifecycleOwner,object :  Observer<List<Source?>?>{
             override fun onChanged(t: List<Source?>?) {
-                newsViewModel.loadSources(category)
                 showTabs(t!!)
             }
         })
         newsViewModel.progressViewVisibilityLiveData.observe(viewLifecycleOwner
         ) {
-                t -> binding.errorProgress.isVisible = t!!
+            binding.errorProgress.isVisible = it
+            Log.e("newsViewModel","the value of progress : $it")
         }
         newsViewModel.errorViewVisibilityBooleanLiveData.observe(viewLifecycleOwner) { it ->
             binding.errorContent.root.isVisible = it!!

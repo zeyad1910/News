@@ -1,5 +1,6 @@
 package com.route.news_application.ui
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +15,7 @@ import retrofit2.Response
 class NewsViewModel : ViewModel() {
 
     var sourcesListLiveData : MutableLiveData<List<Source?>?> = MutableLiveData()
-    var progressViewVisibilityLiveData : MutableLiveData<Boolean> = MutableLiveData(false)
+    val progressViewVisibilityLiveData : MutableLiveData<Boolean> = MutableLiveData(false)
     var errorViewVisibilityBooleanLiveData : MutableLiveData<Boolean> = MutableLiveData()
     var errorViewVisibilityStringLiveData : MutableLiveData<String> = MutableLiveData()
 
