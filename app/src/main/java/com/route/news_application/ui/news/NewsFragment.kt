@@ -50,8 +50,6 @@ class NewsFragment(private val category:String) : Fragment() {
         sendDataToDetailsActivity()
         observeLiveData()
     }
-
-
     private fun observeLiveData(){
         newsViewModel.loadSources(category)
         newsViewModel.sourcesListLiveData.observe(viewLifecycleOwner,object :  Observer<List<Source?>?>{
@@ -97,6 +95,7 @@ class NewsFragment(private val category:String) : Fragment() {
                 val source = tab?.tag as Source
                 source.id?.let {
                     newsViewModel.loadArticles(it)
+                    binding.searchView.setQuery("",false) //to clear text
                     listenerForSearch(it)
                 }
             }
@@ -105,6 +104,7 @@ class NewsFragment(private val category:String) : Fragment() {
                 val source = tab?.tag as Source
                 source.id?.let {
                     newsViewModel.loadArticles(it)
+                    binding.searchView.setQuery("",false) //to clear text
                     listenerForSearch(it)
                 }
             }
@@ -133,7 +133,7 @@ class NewsFragment(private val category:String) : Fragment() {
         binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onQueryTextSubmit(query: String?): Boolean {
-//                searchViewWithCall(sourceId,query)
+                newsViewModel.searchViewWithCall(sourceId,query)
                 return true
             }
 

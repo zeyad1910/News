@@ -37,7 +37,6 @@ class CategoriesFragment(val onClickForNewsFragment : (category:Categories) -> U
         binding.categoriesRv.adapter=adapter
         binding.categoriesRv.layoutManager = GridLayoutManager(requireContext(),2)
     }
-
     private fun initListeners(){
         adapter.categoryClickListener = object : CategoryAdapter.SetOnCategoryClickListener{
             override fun onCategoryClickListener(data: Categories, position: Int) {
