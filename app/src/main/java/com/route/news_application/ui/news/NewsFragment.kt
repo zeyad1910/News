@@ -74,6 +74,10 @@ class NewsFragment(private val category:String) : Fragment() {
             adapter.updateList(it!!)
             Log.e("test to show articles list ","$it")
         }
+        newsViewModel.articlesBySearchLiveData.observe(viewLifecycleOwner){
+            adapter.updateList(it!!)
+            Log.e("test to show articles list ","$it")
+        }
     }
     private fun showTabs(sources:List<Source?>) {
         sources.forEach {
@@ -125,41 +129,8 @@ class NewsFragment(private val category:String) : Fragment() {
             }
         }
     }
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun searchViewWithCall(sourceId : String,query:String?){
-//        checkProgressViewVisibility(false)
-//        checkErrorViewVisibility(false, "")
-        ApiManager.service()?.getEverythingForSearch(query,sourceId,ApiManager.apiKey)
-            ?.enqueue(object:Callback<EverythingResponse>{
-                override fun onResponse(
-                    call: Call<EverythingResponse>,
-                    response: Response<EverythingResponse>,
-                ) {
-                    if(response.isSuccessful) {
-                        response.body()?.articles.let {
-                            adapter.updateList(it!!)
-                        }
-                    }
-                    else{
-                        val error =
-                            Gson().fromJson(
-                                response.errorBody()?.string(),
-                                EverythingResponse::class.java
-                            )
-//                        checkErrorViewVisibility(true, error.status ?: " some thing wrong")
-                    }
-                }
-
-                override fun onFailure(call: Call<EverythingResponse>, t: Throwable) {
-//                    checkProgressViewVisibility(false)
-//                    checkErrorViewVisibility(true,t.message ?:
-//                    "some thing wrong please try again ")
-                }
-
-            })
-    }
     private fun listenerForSearch(sourceId: String){
-                binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+        binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onQueryTextSubmit(query: String?): Boolean {
 //                searchViewWithCall(sourceId,query)
@@ -168,7 +139,7 @@ class NewsFragment(private val category:String) : Fragment() {
 
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onQueryTextChange(newText: String?): Boolean {
-                searchViewWithCall(sourceId,newText)
+                newsViewModel.searchViewWithCall(sourceId,newText)
                 return true
             }
 
