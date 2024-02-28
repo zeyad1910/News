@@ -54,6 +54,7 @@ class NewsViewModel : ViewModel() {
     }
 
      fun loadArticles(sourceId : String){
+
 //        checkProgressViewVisibility(false)
          progressViewVisibilityLiveData.value=false
 //        checkErrorViewVisibility(false, "")
