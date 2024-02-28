@@ -1,13 +1,13 @@
 package com.route.news_application.ui
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.route.news_application.Constants
 import com.route.news_application.R
 import com.route.news_application.databinding.ActivityHomeBinding
+import com.route.news_application.ui.news.NewsFragment
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding : ActivityHomeBinding
