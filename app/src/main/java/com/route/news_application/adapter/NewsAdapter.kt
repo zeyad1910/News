@@ -40,7 +40,6 @@ class NewsAdapter(var newsList : List<Articles?>) : RecyclerView.Adapter<NewsAda
                         Log.e("Glide","Error Loading image",e)
                         return false
                     }
-
                     override fun onResourceReady(
                         resource: Drawable?,
                         model: Any?,
@@ -50,8 +49,8 @@ class NewsAdapter(var newsList : List<Articles?>) : RecyclerView.Adapter<NewsAda
                     ): Boolean {
                         return false
                     }
-                })
-                .into(binding.newsImage)
+                }) .into(binding.newsImage)
+
 
 
 
@@ -69,7 +68,7 @@ class NewsAdapter(var newsList : List<Articles?>) : RecyclerView.Adapter<NewsAda
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val data : Articles? = newsList[position]
          holder.bind(data)
-        holder.binding.newsImage.setOnClickListener {
+        holder.itemView.setOnClickListener {
             onItemViewClickListener?.itemViewClickListener(data,position)
         }
     }

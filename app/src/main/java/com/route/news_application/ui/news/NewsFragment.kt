@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
@@ -28,7 +30,11 @@ import retrofit2.Response
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.route.news_application.R
 import com.route.news_application.ui.DetailsActivity
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class NewsFragment(private val category:String) : Fragment() {
     lateinit var binding : FragmentNewsBinding

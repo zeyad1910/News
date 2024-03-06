@@ -4,12 +4,15 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.route.news_application.api.ApiManager
 import com.route.news_application.api.models.Articles
 import com.route.news_application.api.models.EverythingResponse
 import com.route.news_application.api.models.Source
 import com.route.news_application.api.models.SourcesResponse
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,106 +31,52 @@ class NewsViewModel : ViewModel() {
          progressViewVisibilityLiveData.value = true
          errorViewVisibilityBooleanLiveData.value = false
          errorViewVisibilityStringLiveData.value = ""
-        ApiManager.service()?.getSources(category, ApiManager.apiKey)?.
-        enqueue(object : Callback<SourcesResponse> {
-            override fun onResponse(
-                call: Call<SourcesResponse>,
-                response: Response<SourcesResponse>,
-            ) {
-                progressViewVisibilityLiveData.value = false
-                if(response.isSuccessful){
-                    response.body()?.sources.let {
-                        sourcesListLiveData.value = it
-                    }
-                }else{
-                    val errorByJson= Gson()
-                        .fromJson(response.errorBody()?.string(), SourcesResponse::class.java)
-                    errorViewVisibilityBooleanLiveData.value = true
-                    errorViewVisibilityStringLiveData.value = errorByJson.message ?: "some thing wrong please try again"
-                }
-            }
-
-            override fun onFailure(call: Call<SourcesResponse>, t: Throwable) {
-                progressViewVisibilityLiveData.value = false
-                errorViewVisibilityBooleanLiveData.value = true
-                errorViewVisibilityStringLiveData.value = t.message ?: "some thing wrong please try again"
-            }
-
-        })
+         viewModelScope.launch {
+             try {
+                 val sourcesResponse =
+                     ApiManager.service()?.getSources(category, ApiManager.apiKey)
+                 sourcesListLiveData.value = sourcesResponse?.sources
+                 progressViewVisibilityLiveData.value = false
+             }
+             catch (e:Exception){
+                 progressViewVisibilityLiveData.value = false
+                 errorViewVisibilityBooleanLiveData.value = true
+                 errorViewVisibilityStringLiveData.value = e.message ?: "some thing wrong please try again"
+             }
+         }
     }
      fun loadArticles(sourceId : String){
-
-//        checkProgressViewVisibility(false)
          progressViewVisibilityLiveData.value=false
-//        checkErrorViewVisibility(false, "")
         errorViewVisibilityBooleanLiveData.value=false
         errorViewVisibilityStringLiveData.value = " "
-        ApiManager.service()?.getEverything(sourceId,ApiManager.apiKey)
-            ?.enqueue(object :Callback<EverythingResponse>{
-                override fun onResponse(
-                    call: Call<EverythingResponse>,
-                    response: Response<EverythingResponse>,
-                ) {
-                    if(response.isSuccessful) {
-                        response.body()?.articles.let {
-                            articlesListLiveData.value = it
-//                            adapter.updateList(it!!)
-                        }
-                    }else{
-                        val error =
-                            Gson().fromJson(response.errorBody()?.string(), EverythingResponse::class.java)
-//                       checkErrorViewVisibility(true, error.status ?: " some thing wrong")
-                        errorViewVisibilityBooleanLiveData.value=true
-                        errorViewVisibilityStringLiveData.value = error.status ?: "some thing wrong"
-                    }
-                }
-
-                override fun onFailure(call: Call<EverythingResponse>, t: Throwable) {
-//                   checkProgressViewVisibility(false)
-                    progressViewVisibilityLiveData.value = false
-//                   checkErrorViewVisibility(true,t.message ?:
-//                   "some thing wrong please try again ")
-                    errorViewVisibilityBooleanLiveData.value=true
-                    errorViewVisibilityStringLiveData.value = t.localizedMessage ?: "some thing wrong please try again"
-                }
-
-            } )
+         viewModelScope.launch {
+             try {
+                 val articlesResponse =
+                     ApiManager.service()?.getEverything(sourceId, ApiManager.apiKey)
+                 articlesListLiveData.value = articlesResponse?.articles
+             }
+             catch (e:Exception){
+                 progressViewVisibilityLiveData.value = false
+                 errorViewVisibilityBooleanLiveData.value=true
+                 errorViewVisibilityStringLiveData.value = e.localizedMessage ?: "some thing wrong please try again"
+             }
+         }
     }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-     fun searchViewWithCall(sourceId : String,query:String?){
-//        checkProgressViewVisibility(false)
-//        checkErrorViewVisibility(false, "")
-        ApiManager.service()?.getEverythingForSearch(query,sourceId,ApiManager.apiKey)
-            ?.enqueue(object:Callback<EverythingResponse>{
-                override fun onResponse(
-                    call: Call<EverythingResponse>,
-                    response: Response<EverythingResponse>,
-                ) {
-                    if(response.isSuccessful) {
-                        response.body()?.articles.let {
-                            articlesBySearchLiveData.value = it
-//                            adapter.updateList(it!!)
-                        }
-                    }
-                    else{
-                        val error =
-                            Gson().fromJson(
-                                response.errorBody()?.string(),
-                                EverythingResponse::class.java
-                            )
-                        errorViewVisibilityBooleanLiveData.value=true
-                        errorViewVisibilityStringLiveData.value = error.status ?: "some thing wrong"
-//                        checkErrorViewVisibility(true, error.status ?: " some thing wrong")
-                    }
-                }
-
-                override fun onFailure(call: Call<EverythingResponse>, t: Throwable) {
-//                    checkProgressViewVisibility(false)
-//                    checkErrorViewVisibility(true,t.message ?:
-//                    "some thing wrong please try again ")
-                }
-
-            })
+     @RequiresApi(Build.VERSION_CODES.O)
+     fun searchViewWithCall(sourceId : String, query:String?){
+        progressViewVisibilityLiveData.value=true
+        viewModelScope.launch {
+            try{
+                val articlesResponse =
+                    ApiManager.service()?.getEverythingForSearch(query,sourceId,ApiManager.apiKey)
+                articlesBySearchLiveData.value = articlesResponse?.articles
+                progressViewVisibilityLiveData.value=false
+            }catch (e:Exception){
+                progressViewVisibilityLiveData.value=false
+                errorViewVisibilityBooleanLiveData.value = true
+                errorViewVisibilityStringLiveData.value =
+                    e.message ?: "some thing wrong please try again"
+            }
+        }
     }
 }

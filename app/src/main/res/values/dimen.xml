@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tab_width">10dp</dimen>
+    <dimen name="tab_padding">16dp</dimen>
+    <dimen name="tab_margin">12dp</dimen>
+</resources>
+
