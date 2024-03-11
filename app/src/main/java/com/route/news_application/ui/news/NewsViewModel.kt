@@ -26,11 +26,10 @@ class NewsViewModel : ViewModel() {
     var errorViewVisibilityBooleanLiveData : MutableLiveData<Boolean> = MutableLiveData()
     var errorViewVisibilityStringLiveData : MutableLiveData<String> = MutableLiveData()
 
-
      fun loadSources(category:String) {
          progressViewVisibilityLiveData.value = true
          errorViewVisibilityBooleanLiveData.value = false
-         errorViewVisibilityStringLiveData.value = ""
+         errorViewVisibilityStringLiveData.value = " "
          viewModelScope.launch {
              try {
                  val sourcesResponse =
@@ -51,6 +50,7 @@ class NewsViewModel : ViewModel() {
         errorViewVisibilityStringLiveData.value = " "
          viewModelScope.launch {
              try {
+                 progressViewVisibilityLiveData.value = false
                  val articlesResponse =
                      ApiManager.service()?.getEverything(sourceId, ApiManager.apiKey)
                  articlesListLiveData.value = articlesResponse?.articles

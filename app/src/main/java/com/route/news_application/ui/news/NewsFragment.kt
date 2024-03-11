@@ -28,6 +28,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.forEach
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.route.news_application.R
@@ -84,13 +85,14 @@ class NewsFragment(private val category:String) : Fragment() {
         }
     }
     private fun showTabs(sources:List<Source?>) {
+
         sources.forEach {
             val singleTab = binding.tabLayout.newTab()
             singleTab.text = it?.name
             singleTab.tag = it
             binding.tabLayout.addTab(singleTab)
+            tabMargin()
         }
-
     }
     private fun initListener(){
         binding.errorContent.retryBtn.setOnClickListener {
@@ -150,5 +152,15 @@ class NewsFragment(private val category:String) : Fragment() {
             }
 
         })
+    }
+
+    private fun tabMargin() {
+        val tabs = binding.tabLayout.getChildAt(0) as ViewGroup
+        tabs.forEach {
+            val layoutParams = it.layoutParams as LinearLayout.LayoutParams
+            layoutParams.marginStart = 20
+            it.layoutParams = layoutParams
+            binding.tabLayout.requestLayout()
+        }
     }
 }
