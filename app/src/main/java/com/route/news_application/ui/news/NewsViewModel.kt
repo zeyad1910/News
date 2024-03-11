@@ -5,20 +5,17 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
 import com.route.news_application.api.ApiManager
+import com.route.news_application.data.repos.data_sources.local_datasource.LocalDataSourceImpl
+import com.route.news_application.data.repos.data_sources.remote_datasource.RemoteDataSourceImpl
+import com.route.news_application.data.repos.news_repo.NewsRepo
+import com.route.news_application.data.repos.news_repo.NewsRepoImpl
 import com.route.news_application.models.Articles
-import com.route.news_application.models.EverythingResponse
 import com.route.news_application.models.Source
-import com.route.news_application.models.SourcesResponse
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class NewsViewModel : ViewModel() {
-
+    private val newsRepo : NewsRepo = NewsRepoImpl(RemoteDataSourceImpl(),LocalDataSourceImpl())
     var sourcesListLiveData : MutableLiveData<List<Source?>?> = MutableLiveData()
     var articlesListLiveData : MutableLiveData<List<Articles?>?> = MutableLiveData()
     var articlesBySearchLiveData : MutableLiveData<List<Articles?>?> = MutableLiveData()
@@ -32,9 +29,8 @@ class NewsViewModel : ViewModel() {
          errorViewVisibilityStringLiveData.value = " "
          viewModelScope.launch {
              try {
-                 val sourcesResponse =
-                     ApiManager.service()?.getSources(category, ApiManager.apiKey)
-                 sourcesListLiveData.value = sourcesResponse?.sources
+                 val sourcesList = newsRepo.loadSources(category,ApiManager.apiKey)
+                 sourcesListLiveData.value = sourcesList
                  progressViewVisibilityLiveData.value = false
              }
              catch (e:Exception){
@@ -51,9 +47,9 @@ class NewsViewModel : ViewModel() {
          viewModelScope.launch {
              try {
                  progressViewVisibilityLiveData.value = false
-                 val articlesResponse =
-                     ApiManager.service()?.getEverything(sourceId, ApiManager.apiKey)
-                 articlesListLiveData.value = articlesResponse?.articles
+                 val articlesList =
+                     newsRepo.loadArticles(sourceId,ApiManager.apiKey)
+                 articlesListLiveData.value = articlesList
              }
              catch (e:Exception){
                  progressViewVisibilityLiveData.value = false
@@ -67,9 +63,9 @@ class NewsViewModel : ViewModel() {
         progressViewVisibilityLiveData.value=true
         viewModelScope.launch {
             try{
-                val articlesResponse =
-                    ApiManager.service()?.getEverythingForSearch(query,sourceId,ApiManager.apiKey)
-                articlesBySearchLiveData.value = articlesResponse?.articles
+                val articlesList =
+                    newsRepo.searchViewWithCall(query!!,sourceId,ApiManager.apiKey)
+                articlesBySearchLiveData.value = articlesList
                 progressViewVisibilityLiveData.value=false
             }catch (e:Exception){
                 progressViewVisibilityLiveData.value=false

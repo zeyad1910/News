@@ -1,12 +1,14 @@
 package com.route.news_application.data.repos.data_sources.local_datasource
 
 import com.route.news_application.models.Articles
-import com.route.news_application.models.SourcesResponse
+import com.route.news_application.models.Source
 
 interface LocalDataSource {
 
-    fun loadSources(category:String) : SourcesResponse
+   suspend fun loadSources(category:String) : List<Source?>
 
-    fun loadArticles(sourceId : String) : Articles
+    suspend fun loadArticles(sourceId:String) : List<Articles?>
+
+    suspend fun saveSources(list : List<Source?>)
 
 }

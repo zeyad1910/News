@@ -85,7 +85,6 @@ class NewsFragment(private val category:String) : Fragment() {
         }
     }
     private fun showTabs(sources:List<Source?>) {
-
         sources.forEach {
             val singleTab = binding.tabLayout.newTab()
             singleTab.text = it?.name

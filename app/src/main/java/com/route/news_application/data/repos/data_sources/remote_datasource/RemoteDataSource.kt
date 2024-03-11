@@ -1,13 +1,13 @@
 package com.route.news_application.data.repos.data_sources.remote_datasource
 
-import com.route.news_application.models.Articles
+import com.route.news_application.models.EverythingResponse
 import com.route.news_application.models.SourcesResponse
 
 interface RemoteDataSource {
 
-    fun loadSources(category:String) : SourcesResponse
+   suspend fun loadSources(category:String,apiKey:String) : SourcesResponse?
 
-    fun loadArticles(sourceId : String) : Articles
+   suspend fun loadArticles(sourceId : String,apiKey:String) : EverythingResponse?
 
-    fun searchViewWithCall(sourceId : String, query:String?) : Articles
+   suspend fun searchViewWithCall(sourceId : String, query:String?,apiKey:String) : EverythingResponse?
 }
