@@ -1,6 +1,6 @@
 package com.route.news_application
 
-import com.route.news_application.api.models.Categories
+import com.route.news_application.models.Categories
 
 object Constants {
     const val IMAGE_KEY="IMAGEKEY"

@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.route.news_application.api.ApiManager
-import com.route.news_application.api.models.Articles
-import com.route.news_application.api.models.EverythingResponse
-import com.route.news_application.api.models.Source
-import com.route.news_application.api.models.SourcesResponse
+import com.route.news_application.models.Articles
+import com.route.news_application.models.EverythingResponse
+import com.route.news_application.models.Source
+import com.route.news_application.models.SourcesResponse
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call

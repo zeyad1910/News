@@ -1,7 +1,7 @@
-package com.route.news_application.api.models
+package com.route.news_application.models
 
 data class SourcesResponse(
-    val status : String?=null ,
+    val status : String?=null,
     val sources : List<Source?>?=null,
 
     //to onFailureCase

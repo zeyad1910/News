@@ -11,7 +11,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.route.news_application.R
-import com.route.news_application.api.models.Articles
+import com.route.news_application.models.Articles
 import com.route.news_application.databinding.NewsItemBinding
 import okhttp3.internal.notify
 
@@ -74,6 +74,6 @@ class NewsAdapter(var newsList : List<Articles?>) : RecyclerView.Adapter<NewsAda
     }
     var onItemViewClickListener : SetOnItemViewClickListener?=null
     interface SetOnItemViewClickListener{
-        fun itemViewClickListener(data : Articles? , position: Int)
+        fun itemViewClickListener(data : Articles?, position: Int)
     }
 }

@@ -3,7 +3,7 @@ package com.route.news_application.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.route.news_application.api.models.Categories
+import com.route.news_application.models.Categories
 import com.route.news_application.databinding.CategoryItemsBinding
 
 class CategoryAdapter(private val categoriesList : List<Categories>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(){
@@ -35,6 +35,6 @@ class CategoryAdapter(private val categoriesList : List<Categories>) : RecyclerV
     }
     var categoryClickListener : SetOnCategoryClickListener?=null
     interface SetOnCategoryClickListener{
-        fun onCategoryClickListener(data:Categories,position: Int)
+        fun onCategoryClickListener(data: Categories, position: Int)
     }
 }

@@ -1,4 +1,4 @@
-package com.route.news_application.api.models
+package com.route.news_application.models
 
 data class Articles(
     val source : SourceInArticles?=null,

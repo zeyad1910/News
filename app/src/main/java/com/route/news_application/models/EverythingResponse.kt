@@ -1,4 +1,4 @@
-package com.route.news_application.api.models
+package com.route.news_application.models
 
 data class EverythingResponse(
     val status : String?=null,

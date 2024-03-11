@@ -20,9 +20,9 @@ import com.google.gson.Gson
 import com.route.news_application.Constants
 import com.route.news_application.adapter.NewsAdapter
 import com.route.news_application.api.ApiManager
-import com.route.news_application.api.models.Articles
-import com.route.news_application.api.models.EverythingResponse
-import com.route.news_application.api.models.Source
+import com.route.news_application.models.Articles
+import com.route.news_application.models.EverythingResponse
+import com.route.news_application.models.Source
 import com.route.news_application.databinding.FragmentNewsBinding
 import retrofit2.Call
 import retrofit2.Callback
