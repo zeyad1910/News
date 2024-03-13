@@ -3,7 +3,7 @@ package com.route.news_application.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.route.news_application.models.Categories
+import com.route.news_application.data.models.Categories
 import com.route.news_application.databinding.CategoryItemsBinding
 
 class CategoryAdapter(private val categoriesList : List<Categories>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(){

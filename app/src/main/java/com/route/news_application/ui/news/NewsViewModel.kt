@@ -6,16 +6,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.route.news_application.api.ApiManager
-import com.route.news_application.data.repos.data_sources.local_datasource.LocalDataSourceImpl
-import com.route.news_application.data.repos.data_sources.remote_datasource.RemoteDataSourceImpl
-import com.route.news_application.data.repos.news_repo.NewsRepo
-import com.route.news_application.data.repos.news_repo.NewsRepoImpl
-import com.route.news_application.models.Articles
-import com.route.news_application.models.Source
+import com.route.news_application.data.DatabaseManager
+import com.route.news_application.data.data_sources.local_datasource.LocalDataSourceImpl
+import com.route.news_application.data.data_sources.remote_datasource.RemoteDataSourceImpl
+import com.route.news_application.data.news_repo.NewsRepo
+import com.route.news_application.data.news_repo.NewsRepoImpl
+import com.route.news_application.data.models.Articles
+import com.route.news_application.data.models.Source
 import kotlinx.coroutines.launch
 
 class NewsViewModel : ViewModel() {
-    private val newsRepo : NewsRepo = NewsRepoImpl(RemoteDataSourceImpl(),LocalDataSourceImpl())
+    private val newsRepo : NewsRepo = NewsRepoImpl(RemoteDataSourceImpl(), LocalDataSourceImpl(
+        DatabaseManager.getInstance()
+    ))
     var sourcesListLiveData : MutableLiveData<List<Source?>?> = MutableLiveData()
     var articlesListLiveData : MutableLiveData<List<Articles?>?> = MutableLiveData()
     var articlesBySearchLiveData : MutableLiveData<List<Articles?>?> = MutableLiveData()

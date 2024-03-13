@@ -1,17 +1,14 @@
 package com.route.news_application.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.route.news_application.Constants
 import com.route.news_application.Constants.categoriesList
-import com.route.news_application.R
 import com.route.news_application.adapter.CategoryAdapter
-import com.route.news_application.models.Categories
+import com.route.news_application.data.models.Categories
 import com.route.news_application.databinding.FragmentCategoriesBinding
 
 

@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
@@ -16,26 +15,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.google.gson.Gson
 import com.route.news_application.Constants
 import com.route.news_application.adapter.NewsAdapter
-import com.route.news_application.api.ApiManager
-import com.route.news_application.models.Articles
-import com.route.news_application.models.EverythingResponse
-import com.route.news_application.models.Source
+import com.route.news_application.data.models.Articles
+import com.route.news_application.data.models.Source
 import com.route.news_application.databinding.FragmentNewsBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.forEach
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.route.news_application.R
 import com.route.news_application.ui.DetailsActivity
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class NewsFragment(private val category:String) : Fragment() {
     lateinit var binding : FragmentNewsBinding
