@@ -4,13 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import com.route.news_application.data.daos.ArticlesDao
 import com.route.news_application.data.daos.SourcesDao
+import com.route.news_application.data.models.Articles
 import com.route.news_application.data.models.Source
-
-@Database(entities =  [Source::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
+@Database(entities =  [Source::class,Articles::class], version = 2, exportSchema = false)
 abstract class DatabaseManager : RoomDatabase(){
     abstract fun sourcesDao() : SourcesDao
-    //abstract fun articlesDao() : ArticlesDao
+    abstract fun articlesDao() : ArticlesDao
 
     companion object{
         private var databaseManager : DatabaseManager?=null
