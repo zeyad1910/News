@@ -10,6 +10,8 @@ interface SourcesDao {
     @Insert
     suspend fun addSources(list: List<Source>)
 
+    @Query("delete from sources where category = :category")
+    suspend fun deleteOldList(category : String)
     @Query("select * from sources where category = :category")
     suspend fun getSources(category : String):List<Source?>
 }
