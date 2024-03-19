@@ -27,9 +27,9 @@ class LocalDataSourceImpl(private val databaseManager: DatabaseManager) : LocalD
         databaseManager.sourcesDao().deleteOldList(category)
     }
 
-//    override suspend fun deleteArticlesList(sourceId:String) {
-//        databaseManager.articlesDao().deleteOldArticles(sourceId)
-//    }
+    override suspend fun deleteArticlesList(source: SourceInArticles) {
+        databaseManager.articlesDao().deleteOldArticles(source)
+    }
 
     override suspend fun saveArticles(list: List<Articles?>) {
         val nonNullList = list.filter {

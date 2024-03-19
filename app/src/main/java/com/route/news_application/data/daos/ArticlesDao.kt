@@ -14,7 +14,7 @@ interface ArticlesDao {
 
     @Query("select * from articles_table where source = :source")
     suspend fun getArticles(source: SourceInArticles):List<Articles?>
+    @Query("delete from articles_table where source = :source")
+    suspend fun deleteOldArticles(source: SourceInArticles)
 
-//    @Query("delete from articles_table where source = :sourceId")
-//    suspend fun deleteOldArticles(sourceId : String)
 }
