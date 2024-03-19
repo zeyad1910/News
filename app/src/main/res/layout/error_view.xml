@@ -3,14 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="newVM"
+            type="com.route.news_application.ui.news.NewsViewModel" />
     </data>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="@{newVM.errorViewVisibilityBooleanLiveData ? View.VISIBLE : View.GONE}">
 
         <TextView
             android:id="@+id/error_txt"

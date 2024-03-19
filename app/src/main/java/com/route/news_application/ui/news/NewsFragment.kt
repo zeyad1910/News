@@ -56,9 +56,6 @@ class NewsFragment(private val category:String) : Fragment() {
                 showTabs(t!!)
             }
         })
-        newsViewModel.errorViewVisibilityBooleanLiveData.observe(viewLifecycleOwner) { it ->
-            binding.errorContent.root.isVisible = it!!
-        }
         newsViewModel.errorViewVisibilityStringLiveData.observe(viewLifecycleOwner){ it ->
             binding.errorContent.errorTxt.text=it!!
         }
