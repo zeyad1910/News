@@ -37,11 +37,13 @@ class NewsFragment(private val category:String) : Fragment() {
     ): View? {
         newsViewModel = ViewModelProvider(this)[NewsViewModel::class.java]
         binding = FragmentNewsBinding.inflate(layoutInflater,container,false)
+        binding.newsVM = newsViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
         prepareRV()
         initListener()
         sendDataToDetailsActivity()
@@ -54,11 +56,6 @@ class NewsFragment(private val category:String) : Fragment() {
                 showTabs(t!!)
             }
         })
-        newsViewModel.progressViewVisibilityLiveData.observe(viewLifecycleOwner
-        ) {
-            binding.errorProgress.isVisible = it
-            Log.e("newsViewModel","the value of progress : $it")
-        }
         newsViewModel.errorViewVisibilityBooleanLiveData.observe(viewLifecycleOwner) { it ->
             binding.errorContent.root.isVisible = it!!
         }

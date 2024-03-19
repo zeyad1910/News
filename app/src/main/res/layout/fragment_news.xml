@@ -4,7 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="newsVM"
+            type="com.route.news_application.ui.news.NewsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,7 +77,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="5dp"
-            android:visibility="gone"
+            android:visibility="@{newsVM.progressViewVisibilityLiveData ? View.VISIBLE : View.GONE}"
             android:indeterminate="true"
             android:indeterminateTint="@color/green" />
     </androidx.constraintlayout.widget.ConstraintLayout>
