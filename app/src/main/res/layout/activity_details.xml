@@ -1,113 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_blurr"
-    tools:context=".ui.DetailsActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="67dp"
-        android:background="@drawable/toolbar_background"
-        app:layout_constraintTop_toTopOf="parent">
-        <TextView
-            android:id="@+id/title_toolbar_txt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/news_details"
-            android:gravity="center"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            />
-    </com.google.android.material.appbar.AppBarLayout>
+    <data>
 
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_details"
-        android:layout_width="402dp"
-        android:layout_height="313dp"
-        app:layout_constraintTop_toBottomOf="@id/app_bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
-        tools:src="@drawable/background"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize5Percent"
-        android:scaleType="fitXY"/>
-
-    <TextView
-        android:id="@+id/news_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_details"
-        tools:text="BBC News"
-        android:textSize="12sp"
-        android:textColor="@color/black"
-        android:layout_margin="10dp"
-        />
-    <TextView
-        android:id="@+id/news_title_txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/news_txt"
-        tools:text="BBC Newssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_margin="10dp"
-        />
-    <TextView
-        android:id="@+id/for_date_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/news_title_txt"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="10dp"
-        tools:text="3 hours ago"
-        android:textSize="12sp"
-        android:textColor="@color/black"
-        />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cons_layout_for_contnet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/for_date_txt"
-        android:layout_marginTop="20dp"
-        android:background="@color/white"
-        android:padding="5dp">
-    <TextView
-        android:id="@+id/news_description_txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="BBC Newssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:layout_height="match_parent"
+        android:background="@drawable/background_blurr"
+        tools:context=".ui.DetailsActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:background="@drawable/toolbar_background"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/title_toolbar_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/news_details"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_details"
+            android:layout_width="402dp"
+            android:layout_height="313dp"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            tools:src="@drawable/background"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize5Percent"
+            android:scaleType="fitXY" />
+
         <TextView
-            android:id="@+id/txt_for_link"
+            android:id="@+id/news_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/news_description_txt"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_details"
+            tools:text="BBC News"
             android:textSize="12sp"
             android:textColor="@color/black"
-            android:text="@string/view_full_article"
-            android:layout_marginTop="10dp"/>
-        <ImageButton
-            android:id="@+id/btn_for_link"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/news_title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/news_txt"
+            tools:text="BBC Newssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/for_date_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/polygon"
-            app:layout_constraintTop_toBottomOf="@id/txt_for_link"
+            app:layout_constraintTop_toBottomOf="@id/news_title_txt"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="5dp"/>
+            android:layout_margin="10dp"
+            tools:text="3 hours ago"
+            android:textSize="12sp"
+            android:textColor="@color/black" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cons_layout_for_contnet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/for_date_txt"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/news_description_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="BBC Newssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_for_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/news_description_txt"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="@string/view_full_article"
+                android:layout_marginTop="10dp" />
+
+            <ImageButton
+                android:id="@+id/btn_for_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/polygon"
+                app:layout_constraintTop_toBottomOf="@id/txt_for_link"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="5dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

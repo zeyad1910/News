@@ -7,7 +7,7 @@ plugins {
 android {
     namespace 'com.route.news_application'
     compileSdk 34
-        viewBinding{
+        dataBinding{
             enabled = true
         }
     defaultConfig {

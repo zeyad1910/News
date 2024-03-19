@@ -3,6 +3,7 @@ package com.route.news_application.ui
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.route.news_application.Constants
 import com.route.news_application.R
@@ -16,8 +17,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var actionBarDrawerToggle : ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_home)
         onCategoryFragment()
         navigationView()
     }
