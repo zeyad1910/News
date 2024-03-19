@@ -24,6 +24,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.forEach
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.route.news_application.data.models.SourceInArticles
 import com.route.news_application.ui.DetailsActivity
 
 class NewsFragment(private val category:String) : Fragment() {
@@ -75,11 +76,13 @@ class NewsFragment(private val category:String) : Fragment() {
     }
     private fun showTabs(sources:List<Source?>) {
         sources.forEach {
-            val singleTab = binding.tabLayout.newTab()
-            singleTab.text = it?.name
-            singleTab.tag = it
-            binding.tabLayout.addTab(singleTab)
-            tabMargin()
+            it?.let {
+                val singleTab = binding.tabLayout.newTab()
+                singleTab.text = it.name
+                singleTab.tag = it
+                binding.tabLayout.addTab(singleTab)
+                tabMargin()
+            }
         }
     }
     private fun initListener(){
@@ -90,7 +93,9 @@ class NewsFragment(private val category:String) : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val source = tab?.tag as Source
                 source.id?.let {
-                    newsViewModel.loadArticles(it)
+                    val sourceInArticles = SourceInArticles(source.id, source.name)
+                    Log.d("tt", "source $source")
+                    newsViewModel.loadArticles(sourceInArticles)
                     binding.searchView.setQuery("",false) //to clear text
                     listenerForSearch(it)
                 }
@@ -99,7 +104,8 @@ class NewsFragment(private val category:String) : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 val source = tab?.tag as Source
                 source.id?.let {
-                    newsViewModel.loadArticles(it)
+                    val sourceInArticles = SourceInArticles(source.id, source.name)
+                    newsViewModel.loadArticles(sourceInArticles)
                     binding.searchView.setQuery("",false) //to clear text
                     listenerForSearch(it)
                 }

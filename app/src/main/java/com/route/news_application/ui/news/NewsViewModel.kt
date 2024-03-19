@@ -1,6 +1,7 @@
 package com.route.news_application.ui.news
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,7 @@ import com.route.news_application.data.news_repo.NewsRepo
 import com.route.news_application.data.news_repo.NewsRepoImpl
 import com.route.news_application.data.models.Articles
 import com.route.news_application.data.models.Source
+import com.route.news_application.data.models.SourceInArticles
 import kotlinx.coroutines.launch
 
 class NewsViewModel : ViewModel() {
@@ -43,15 +45,16 @@ class NewsViewModel : ViewModel() {
              }
          }
     }
-     fun loadArticles(sourceId : String){
+     fun loadArticles(source: SourceInArticles){
          progressViewVisibilityLiveData.value=false
         errorViewVisibilityBooleanLiveData.value=false
         errorViewVisibilityStringLiveData.value = " "
          viewModelScope.launch {
              try {
                  progressViewVisibilityLiveData.value = false
+                 Log.d("tt", "viewmodel sourceid ${source.id}")
                  val articlesList =
-                     newsRepo.loadArticles(sourceId,ApiManager.apiKey)
+                     newsRepo.loadArticles(source,ApiManager.apiKey)
                  articlesListLiveData.value = articlesList
              }
              catch (e:Exception){

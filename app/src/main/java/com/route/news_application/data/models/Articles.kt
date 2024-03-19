@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.route.news_application.data.Converters
 
 @Entity(tableName = "articles_table")
-data class Articles(
+data class Articles (
     @PrimaryKey
     @ColumnInfo
     @TypeConverters(Converters::class)
