@@ -22,37 +22,7 @@ class NewsAdapter(var newsList : List<Articles?>) : RecyclerView.Adapter<NewsAda
     }
     class NewsViewHolder(val binding : NewsItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(data : Articles?) {
-            binding.titleArticleTxt.text = data?.title
-            binding.articleTxt.text = data?.author
-            Glide.with(itemView)
-                .load(data?.urlToImage)
-                .placeholder(R.drawable.background) //until loading
-                .error(R.drawable.route) // if any error in loading
-                .override(Target.SIZE_ORIGINAL) //  Specify image dimensions if necessary
-                .listener(object : RequestListener<Drawable>{
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        isFirstResource: Boolean,
-                    ): Boolean {
-                        Log.e("Glide","Error Loading image",e)
-                        return false
-                    }
-                    override fun onResourceReady(
-                        resource: Drawable?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean,
-                    ): Boolean {
-                        return false
-                    }
-                }) .into(binding.newsImage)
-
-
-
-
+           binding.article = data
         }
     }
 
