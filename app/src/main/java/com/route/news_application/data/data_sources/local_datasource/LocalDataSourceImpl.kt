@@ -13,7 +13,11 @@ class LocalDataSourceImpl(private val databaseManager: DatabaseManager) : LocalD
     }
 
     override suspend fun loadArticles(source: SourceInArticles): List<Articles?> {
-        return databaseManager.articlesDao().getArticles(source)
+
+        val articlesDB = databaseManager.articlesDao().getArticles(source)
+        return articlesDB.map {
+            it?.toArticle()
+        }
     }
 
     override suspend fun saveSources(list: List<Source?>) {
@@ -27,9 +31,9 @@ class LocalDataSourceImpl(private val databaseManager: DatabaseManager) : LocalD
         databaseManager.sourcesDao().deleteOldList(category)
     }
 
-    override suspend fun deleteArticlesList(source: SourceInArticles) {
-        databaseManager.articlesDao().deleteOldArticles(source)
-    }
+//    override suspend fun deleteArticlesList(source: String) {
+//        databaseManager.articlesDao().deleteOldArticles(source)
+//    }
 
     override suspend fun saveArticles(list: List<Articles?>) {
         val nonNullList = list.filter {
@@ -38,8 +42,9 @@ class LocalDataSourceImpl(private val databaseManager: DatabaseManager) : LocalD
 //            }
             return@filter it != null
         } as List<Articles>
+        val articlesDB = nonNullList.map { it.toArticleDB() }
         Log.d("tt", "not null source ex ${nonNullList[0].source.id}")
-        databaseManager.articlesDao().addArticles(nonNullList)
+        databaseManager.articlesDao().addArticles(articlesDB)
     }
 
 }

@@ -14,7 +14,7 @@ interface LocalDataSource {
 
     suspend fun deleteSourcesList(category: String)
 
-    suspend fun deleteArticlesList(source: SourceInArticles)
+//    suspend fun deleteArticlesList(source: SourceInArticles)
 
     suspend fun saveArticles(list: List<Articles?>)
 }

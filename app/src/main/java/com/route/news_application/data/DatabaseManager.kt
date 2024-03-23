@@ -9,9 +9,10 @@ import androidx.room.TypeConverters
 import com.route.news_application.data.daos.ArticlesDao
 import com.route.news_application.data.daos.SourcesDao
 import com.route.news_application.data.models.Articles
+import com.route.news_application.data.models.ArticlesDB
 import com.route.news_application.data.models.Source
 @TypeConverters(Converters::class)
-@Database(entities =  [Source::class,Articles::class], version = 2, exportSchema = false)
+@Database(entities =  [Source::class, ArticlesDB::class], version = 2, exportSchema = false)
 abstract class DatabaseManager : RoomDatabase(){
     abstract fun sourcesDao() : SourcesDao
     abstract fun articlesDao() : ArticlesDao
