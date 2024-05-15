@@ -30,10 +30,12 @@ The Global News App, built with Kotlin, offers a comprehensive and engaging news
 
 ## Screenshots
 
-![Screenshot 1](IMG-20240404-WA0003.jpg)
-![Screenshot 2](IMG-20240404-WA0007.jpg)
-![Screenshot 3](IMG-20240404-WA0011.jpg)
-![Screenshot 4](IMG-20240404-WA0004.jpg)
+## Screenshots
+
+| Screenshot 1 | Screenshot 2 | Screenshot 3 | Screenshot 4 |
+|---------------|---------------|---------------|---------------|
+| <img src="IMG-20240404-WA0003.jpg" alt="Screenshot 1" width="300"> | <img src="IMG-20240404-WA0007.jpg" alt="Screenshot 2" width="300"> | <img src="IMG-20240404-WA0011.jpg" alt="Screenshot 3" width="300"> | <img src="IMG-20240404-WA0004.jpg" alt="Screenshot 4" width="300"> |
+
 
 ## Installation
 
